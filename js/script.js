@@ -19,8 +19,8 @@ function setButtons() {
         animation.innerHTML = generateAnimation()
 
         // Enable buttons
-        start.disabled = false;
-        reset.disabled = false;
+        start.disabled = false
+        reset.disabled = false
     }
     
     start.onclick = function () {
@@ -33,15 +33,28 @@ function setButtons() {
 }
 
 function generateAnimation() {
-    let animationData = `
-        0% {
-            transform: translateY(0rem);
-        }
-        100% {
-            transform: translateY(10rem);
-        }
-    `
+    const data = ["transform: translateY(0rem)", "transform: translateY(10rem)"]
+    let animationData = dataToCssAnimation(data)
     console.log("Animation data generated")
     console.log(animationData)
     return `@keyframes robot {${animationData}}`
+}
+
+function dataToCssAnimation(data) {
+    let numDataPoints = data.length
+    let percentDiff = 100 / numDataPoints
+    let currPercent = 0
+    let animationData = ``
+    data.forEach(function(d) {
+        animationData += addCssRow(d, currPercent)
+        currPercent += percentDiff
+    })
+    return animationData
+}
+
+function addCssRow(data, currPercent) {
+    return `${currPercent}% {
+    ${data}
+}
+`
 }

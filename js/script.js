@@ -1,23 +1,35 @@
 // Cache DOM objects to js var
 const robot = document.getElementById("robot")
 const animation = document.getElementById("animation")
-    // Buttons
+
+// Buttons
 const generate = document.getElementById("generate")
 const start = document.getElementById("start")
 const reset = document.getElementById("reset")
-    // Generate animation button
-generate.onclick = function () {
-    // Set animation
-    animation.innerHTML = generateAnimation()
-    // Enable buttons
-    start.disabled = false;
-    reset.disabled = false;
+
+main()
+
+function main() {
+    setButtons()
 }
-start.onclick = function () {
-    robot.className = "robot-animation"
-}
-reset.onclick = function () {
-    robot.className = ""
+
+function setButtons() {
+    generate.onclick = function () {
+        // Set animation
+        animation.innerHTML = generateAnimation()
+
+        // Enable buttons
+        start.disabled = false;
+        reset.disabled = false;
+    }
+    
+    start.onclick = function () {
+        robot.className = "robot-animation"
+    }
+    
+    reset.onclick = function () {
+        robot.className = ""
+    }
 }
 
 function generateAnimation() {

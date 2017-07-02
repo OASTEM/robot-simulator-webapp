@@ -33,7 +33,14 @@ function setButtons() {
 }
 
 function generateAnimation() {
-    const data = ["transform: translateY(0rem)", "transform: translateY(10rem)"]
+    // x, y, rot
+    const data = [
+        [0, 0, 0],
+        [0, 0, 45],
+        [100, 100, 45],
+        [100, 100, 0],
+        [100, 300, 0]
+    ]
     let animationData = dataToCssAnimation(data)
     console.log("Animation data generated")
     console.log(animationData)
@@ -42,10 +49,10 @@ function generateAnimation() {
 
 function dataToCssAnimation(data) {
     let numDataPoints = data.length
-    let percentDiff = 100 / numDataPoints
+    let percentDiff = 100 / (numDataPoints - 1)
     let currPercent = 0
     let animationData = ``
-    data.forEach(function(d) {
+    data.forEach(d => {
         animationData += addCssRow(d, currPercent)
         currPercent += percentDiff
     })
@@ -53,8 +60,14 @@ function dataToCssAnimation(data) {
 }
 
 function addCssRow(data, currPercent) {
+    let x = data[0]
+    // negative y so Y becomes upward motion rather than downwards
+    let y = -data[1]
+    let rot = data[2]
     return `${currPercent}% {
-    ${data}
+    transform:
+        translate(${x}px, ${y}px)
+        rotate(${rot}deg);
 }
 `
 }

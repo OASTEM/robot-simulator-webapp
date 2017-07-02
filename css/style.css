@@ -12,6 +12,7 @@ h1 {
 }
 
 .robot-canvas {
+    position: relative;
     background-color: azure;
     margin: auto;
     width: 80vh;
@@ -19,6 +20,16 @@ h1 {
 }
 
 #robot {
+    position: absolute;
+    bottom: 0;
+
+    /*
+    This is an approximation for horizontal centering.
+    Ideally, I would be able to apply transform: translateX() to
+    perfectly center it, but this data is overwritten by the animation data
+    */
+    left: 45%;
+    
     background-color: red;
     width: 10%;
     height: 10%;

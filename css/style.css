@@ -15,8 +15,8 @@ h1 {
     position: relative;
     background-color: azure;
     margin: auto;
-    width: 80vh;
-    height: 80vh;
+    width: 600px;
+    height: 600px;
 }
 
 #robot {
@@ -31,8 +31,8 @@ h1 {
     left: 45%;
     
     background-color: red;
-    width: 10%;
-    height: 10%;
+    width: 91px;
+    height: 91px;
 }
 
 .robot-animation {

@@ -1,9 +1,5 @@
 const robotCanvas = document.getElementById("robot-canvas")
 
-function unitsToPixels(units) {
-    return units * canvasHeight / canvasSize
-}
-
 class FieldObject {
     // list of x, y coords
     constructor(points) {
@@ -44,17 +40,25 @@ class FieldObject {
     }
 }
 
-class fieldRectangle {
-    constructor(length, width, x, y) {
-        let newDiv = document.createElement("div")
-        newDiv.style.width = width
-        newDiv.style.height = length
-        newDiv.style.bottom = y
-        newDiv.style.left = x
-        newDiv.style.background = "purple"
+class FieldRectangle {
+    constructor(length, width, x, y, color="brown") {
+        let div = document.createElement("div")
+        let width_XPx = unitsToPixels(width)
+        let height_XPx = unitsToPixels(length)
+        let start_XPx = unitsToPixels(x)
+        let start_YPx = unitsToPixels(y)
         
-        console.log(newDiv)
-        robotCanvas.appendChild(newDiv)
+        div.style.position = "absolute"
+        div.style.width = width_XPx
+        div.style.height = height_XPx
+        div.style.left = start_XPx - width_XPx / 2
+        div.style.bottom = start_YPx - height_XPx / 2
+        div.style.background = color
+        this.div = div
+    }
+    
+    draw() {
+        robotCanvas.appendChild(this.div)
     }
 }
 
@@ -64,13 +68,5 @@ class Robot {
     }
 }
 
-const rect = new FieldObject([
-    [ 1, 1 ], [ 1, 2 ], [ 2, 2 ], [ 2, 1 ] 
-])
-const rect2 = new FieldObject([
-    [1.5, 1.5], [1.5, 3], [3, 3], [3, 1.5]
-])
-
-let thing = new fieldRectangle(20, 20, 10, 10)
-let t = rect2.isCollidingWith(rect)
-console.log(t)
+rect = new FieldRectangle(10, 10, 10, 10)
+rect.draw()

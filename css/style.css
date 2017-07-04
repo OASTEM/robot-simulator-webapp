@@ -13,11 +13,6 @@ body {
     background-color: #eee;
 }
 
-h1 {
-    font-weight: bold;
-    font-size: xx-large;
-}
-
 .robot-canvas {
     box-sizing: border-box;
     position: relative;

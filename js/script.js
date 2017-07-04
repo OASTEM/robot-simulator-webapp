@@ -37,9 +37,12 @@ const generate = document.getElementById("generate")
 const start = document.getElementById("start")
 const reset = document.getElementById("reset")
 
+let data
+
 main()
 
 function main() {
+    data = doMath(rawData)
     resetRobot()
     setButtons()
 }
@@ -75,6 +78,7 @@ function resetRobot() {
 function setButtons() {
     input.onclick = function() {
         data = JSON.parse(prompt("Paste in your robot data here"))
+        data = doMath(data)
     }
     
     generate.onclick = function() {

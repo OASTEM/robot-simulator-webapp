@@ -1,9 +1,15 @@
 body {
-    overflow: hidden;
-    font-family: sans-serif;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     height: 100vh;
     width: 100vw;
+    
+    overflow: hidden;
+    
+    font-family: sans-serif;
+    text-align: center;
     background-color: #eee;
 }
 
@@ -15,27 +21,24 @@ h1 {
 .robot-canvas {
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
+    
+    width: 90vh;
+    height: 90vh;
+    
     background-color: azure;
-    border: solid black 2px;
-    margin: auto;
-    width: 100vh;
-    height: 100vh;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 #robot {
+    visibility: hidden;
     position: absolute;
-    bottom: 0;
-
-    /*
-    This is an approximation for horizontal centering.
-    Ideally, I would be able to apply transform: translateX() to
-    perfectly center it, but this data is overwritten by the animation data
-    */
-    left: 45%;
     
     background-color: red;
     width: 10%;
     height: 10%;
+    
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .robot-animation {
@@ -44,14 +47,15 @@ h1 {
 
 .buttons {
     position: fixed;
-    top: 1rem;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: 1rem;
 }
 
 @media only screen and orientation: portrait {
     .robot-canvas {
-        width: 100vw;
-        height: 100vw;
+        width: 90vw;
+        height: 90vw;
     }
 }

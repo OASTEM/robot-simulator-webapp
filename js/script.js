@@ -1,13 +1,13 @@
 // x, y, rot
 // Data is currently interpreted as relative from starting position
 // not global x y position
-let data = [
-    [0, 0, 0],
-    [0, 0, 45],
-    [50, 50, 45],
-    [50, 50, 0],
-    [50, 100, 0]
-]
+//let data = [
+//    [0, 0, 0],
+//    [0, 0, 45],
+//    [50, 50, 45],
+//    [50, 50, 0],
+//    [50, 100, 0]
+//]
 
 /* 
     CHANGE canvasSize TO CHANGE SCALING OF PROGRAM
@@ -20,7 +20,7 @@ const robotHeight = 2 // units
 
 // Robot x - y is 
 const robotStartX = 50 // units
-const robotStartY = 0 // units
+const robotStartY = 50 // units
 
 // This is the actual size in px
 // We use the _actual_ canvasHeight to scale to the canvasSize of x supposed units
@@ -107,6 +107,8 @@ function dataToCssAnimation(data) {
     canvasHeight = document.getElementById("robot-canvas").getBoundingClientRect().height
     
     let numDataPoints = data.length
+    // Curently assumes all times are same from each other
+    // TODO use time value to properly separate key frames
     let percentDiff = 100 / (numDataPoints - 1)
     let currPercent = 0
     let animationData = ``
@@ -118,10 +120,9 @@ function dataToCssAnimation(data) {
 }
 
 function addCssRow(data, currPercent) {
-    let x = unitsToPixels(data[0])
-    // negative y so Y becomes upward motion rather than downwards
-    let y = -unitsToPixels(data[1])
-    let rot = data[2]
+    let x = unitsToPixels(data.x)
+    let y = unitsToPixels(data.y)
+    let rot = data.rot
     return `${currPercent}% {
     transform:
         translate(${x}px, ${y}px)

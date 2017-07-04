@@ -1,4 +1,4 @@
-// We have const rawData as a json with time, x, y keys
+// We have const rawData as a json with time, rVel, lVel keys
 
 // We will putput as x, y, rot
 let output = []
@@ -14,6 +14,8 @@ rawData.forEach((item, index) => {
     else {
         deltaTime = item.time - rawData[index - 1].time
     }
+    // Convert miliseconds to seconds
+    deltaTime /= 1000
     
     // Calculate change of angle
     deltaTheta = (item.rVelocity - item.lVelocity) / sideLength
@@ -24,18 +26,20 @@ rawData.forEach((item, index) => {
     // Update global rotation
     currRotation += deltaTheta
     
-    // Rotation degrees to 
+    // Calculate rotation to pivot point
     if (item.rVelocity == item.lVelocity) {
         rotToPivot = item.rVelocity * deltaTime
     }
-    rotToPivot = (sideLength / 2) * ((item.rVelocity + item.lVelocity) / (item.rVelocity - item.lVelocity))
+    else {
+        rotToPivot = (sideLength / 2) * ((item.rVelocity + item.lVelocity) / (item.rVelocity - item.lVelocity))
+    }
     
     deltaX = rotToPivot * (Math.cos(deltaTheta + currRotation) - Math.cos(currRotation))
     deltaY = rotToPivot * (Math.sin(deltaTheta + currRotation) - Math.sin(currRotation))
     
     // Negate deltas to make +Y North and +X East
-    deltaX = -deltaX
-    deltaY = -deltaY
+    deltaX = deltaX * deltaTime
+    deltaY = deltaY * deltaTime
     
     // Update global positions
     currX += deltaX
@@ -48,3 +52,5 @@ rawData.forEach((item, index) => {
     })
 });
 console.log(output)
+
+let data = output

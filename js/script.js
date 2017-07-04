@@ -105,9 +105,16 @@ function dataToCssAnimation(data) {
     let percentDiff = 100 / (numDataPoints - 1)
     let currPercent = 0
     let animationData = ``
-    data.forEach(d => {
-        animationData += addCssRow(d, currPercent)
-        currPercent += percentDiff
+    data.forEach((d, i) => {
+        // If last item, set percent to 100% so that animation stays at resting
+        // position rather than going back to start
+        if (i === data.length - 1) {
+            animationData += addCssRow(d, 100)
+        }
+        else {
+            animationData += addCssRow(d, currPercent)
+            currPercent += percentDiff
+        }
     })
     return animationData
 }

@@ -5,7 +5,7 @@ let output = []
 let currRotation = currX = currY = 0
 const sideLength = 1
 rawData.forEach((item, index) => {
-    let deltaTime, deltaTheta, rotToPivot, deltaX, deltaY
+    let deltaTime, deltaTheta, rotToPivot, deltaX, deltaY, radRotation
     
     // Find delta time
     if (index === 0) {
@@ -26,20 +26,22 @@ rawData.forEach((item, index) => {
     // Update global rotation
     currRotation += deltaTheta
     
-    // Calculate rotation to pivot point
     if (item.rVelocity == item.lVelocity) {
         rotToPivot = item.rVelocity * deltaTime
+        radRotation = currRotation * Math.PI / 180
+        deltaX = rotToPivot * Math.cos(radRotation)
+        detaY = rotToPivot * Math.sin(radRotation)
     }
     else {
         rotToPivot = (sideLength / 2) * ((item.rVelocity + item.lVelocity) / (item.rVelocity - item.lVelocity))
+        radRotation = currRotation * Math.PI / 180
+        deltaY = rotToPivot * (Math.sin(deltaTheta + radRotation) - Math.sin(radRotation))
+        deltaX = rotToPivot * (Math.cos(deltaTheta + radRotation) - Math.cos(radRotation))
     }
     
-    deltaX = rotToPivot * (Math.cos(deltaTheta + currRotation) - Math.cos(currRotation))
-    deltaY = rotToPivot * (Math.sin(deltaTheta + currRotation) - Math.sin(currRotation))
-    
-    // Negate deltas to make +Y North and +X East
-    deltaX = deltaX * deltaTime
-    deltaY = deltaY * deltaTime
+    // Multiply by time
+    deltaX *= deltaTime
+    deltaY *= deltaTime
     
     // Update global positions
     currX += deltaX
@@ -51,6 +53,5 @@ rawData.forEach((item, index) => {
         "y" : currY
     })
 });
-console.log(output)
 
 let data = output

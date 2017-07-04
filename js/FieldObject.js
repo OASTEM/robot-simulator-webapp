@@ -1,4 +1,6 @@
-const robotCanvas = document.getElementById("robot-canvas")
+function unitsToPixels(units) {
+    return units * canvasHeight / canvasSize
+}
 
 class FieldObject {
     // list of x, y coords
@@ -48,7 +50,7 @@ class FieldRectangle {
         let start_XPx = unitsToPixels(x)
         let start_YPx = unitsToPixels(y)
         
-        div.style.position = "absolute"
+        div.className = "field-object"
         div.style.width = width_XPx
         div.style.height = height_XPx
         div.style.left = start_XPx - width_XPx / 2
@@ -62,11 +64,12 @@ class FieldRectangle {
     }
 }
 
-class Robot {
+class Robot extends FieldRectangle {
     constructor(length, width, x, y) {
-        
+        super(length, width, x, y, "blue")
+        this.div.id = "robot"
     }
 }
 
-rect = new FieldRectangle(10, 10, 10, 10)
-rect.draw()
+let thing = new FieldRectangle(10, 10, 10, 10)
+thing.draw()

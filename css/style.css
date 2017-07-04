@@ -25,10 +25,7 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-#robot {
-    visibility: hidden;
-    position: absolute;
-    
+#robot {   
     background-color: red;
     width: 10%;
     height: 10%;
@@ -46,6 +43,10 @@ body {
     left: 50%;
     transform: translateX(-50%);
     margin-top: 1rem;
+}
+
+.field-object {
+    position: absolute;
 }
 
 @media only screen and orientation: portrait {

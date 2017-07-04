@@ -72,6 +72,7 @@ function setButtons() {
     
     generate.onclick = function() {
         // Set animation
+        robot.style.animationDuration = calcAnimationLength()
         animation.innerHTML = generateAnimation()
 
         // Enable buttons
@@ -86,6 +87,10 @@ function setButtons() {
     reset.onclick = function() {
         robot.className = ""
     }
+}
+
+function calcAnimationLength() {
+    return data[data.length - 1].time / 1000 + "s"
 }
 
 function generateAnimation() {

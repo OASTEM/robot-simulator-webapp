@@ -37,7 +37,7 @@ body {
 }
 
 .robot-animation {
-    animation: robot linear forwards 2s;
+    animation: robot linear forwards;
 }
 
 .buttons {

@@ -3,8 +3,7 @@
 function doMath(data) {
     // We will putput as x, y, rot
     let output = []
-    let currX = currY = 0
-    let currRotation = -90
+    let currRotation = currX = currY = 0
     let sideLength = robotWidth
     data.forEach((item, index) => {
         let deltaTime, deltaTheta, rotToPivot, deltaX, deltaY, radRotation
@@ -50,7 +49,8 @@ function doMath(data) {
         currY += deltaY
 
         output.push({
-            "rot" : currRotation - 90,
+            "time" : item.time,
+            "rot" : currRotation,
             "x" : currX,
             "y" : currY
         })

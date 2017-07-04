@@ -130,7 +130,3 @@ function addCssRow(data, currPercent) {
 }
 `
 }
-
-function unitsToPixels(units) {
-    return units * canvasHeight / canvasSize
-}

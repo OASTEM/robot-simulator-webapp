@@ -1,22 +1,11 @@
-// x, y, rot
-// Data is currently interpreted as relative from starting position
-// not global x y position
-//let data = [
-//    [0, 0, 0],
-//    [0, 0, 45],
-//    [50, 50, 45],
-//    [50, 50, 0],
-//    [50, 100, 0]
-//]
-
 /* 
     CHANGE canvasSize TO CHANGE SCALING OF PROGRAM
 */
 const canvasSize = 100 // units
 
 // Same with robot size and location in units as defined above
-const robotWidth = 1 // unit
-const robotHeight = 2 // units
+const robotWidth = 0.6858 // unit (27 inches)
+const robotHeight = 0.8382 // units (33 inches)
 
 // Robot x - y is 
 const robotStartX = 50 // units

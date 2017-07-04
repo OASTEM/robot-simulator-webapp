@@ -27,11 +27,11 @@ function doMath(data) {
         // Update global rotation
         currRotation += deltaTheta
 
-        if (item.rVelocity == item.lVelocity) {
-            rotToPivot = item.rVelocity * deltaTime
+        if (item.rVelocity === item.lVelocity) {
+            rotToPivot = item.rVelocity
             radRotation = currRotation * Math.PI / 180
             deltaX = rotToPivot * Math.cos(radRotation)
-            detaY = rotToPivot * Math.sin(radRotation)
+            deltaY = rotToPivot * Math.sin(radRotation)
         }
         else {
             rotToPivot = (sideLength / 2) * ((item.rVelocity + item.lVelocity) / (item.rVelocity - item.lVelocity))

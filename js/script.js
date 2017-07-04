@@ -1,6 +1,19 @@
-// We say the canvas is this many units
-// may be changed to scale the robot movement
+// x, y, rot
+// Data is currently interpreted as relative from starting position
+// not global x y position
+let data = [
+    [0, 0, 0],
+    [0, 0, 45],
+    [50, 50, 45],
+    [50, 50, 0],
+    [50, 100, 0]
+]
+
+/* 
+    CHANGE canvasSize TO CHANGE SCALING OF PROGRAM
+*/
 const canvasSize = 100 // units
+
 // Same with robot size and location in units as defined above
 const robotWidth = 1 // unit
 const robotHeight = 2 // units
@@ -19,6 +32,7 @@ const robot = document.getElementById("robot")
 const animation = document.getElementById("animation")
 
 // Buttons
+const input = document.getElementById("input")
 const generate = document.getElementById("generate")
 const start = document.getElementById("start")
 const reset = document.getElementById("reset")
@@ -59,7 +73,11 @@ function resetRobot() {
 }
 
 function setButtons() {
-    generate.onclick = function () {
+    input.onclick = function() {
+        data = JSON.parse(prompt("Paste in your robot data here"))
+    }
+    
+    generate.onclick = function() {
         // Set animation
         animation.innerHTML = generateAnimation()
 
@@ -68,24 +86,16 @@ function setButtons() {
         reset.disabled = false
     }
     
-    start.onclick = function () {
+    start.onclick = function() {
         robot.className = "robot-animation"
     }
     
-    reset.onclick = function () {
+    reset.onclick = function() {
         robot.className = ""
     }
 }
 
 function generateAnimation() {
-    // x, y, rot
-    const data = [
-        [0, 0, 0],
-        [0, 0, 45],
-        [50, 50, 45],
-        [50, 50, 0],
-        [50, 100, 0]
-    ]
     let animationData = dataToCssAnimation(data)
     console.log("Animation data generated")
     console.log(animationData)
@@ -108,8 +118,6 @@ function dataToCssAnimation(data) {
 }
 
 function addCssRow(data, currPercent) {
-    console.log(canvasHeight)
-    
     let x = unitsToPixels(data[0])
     // negative y so Y becomes upward motion rather than downwards
     let y = -unitsToPixels(data[1])

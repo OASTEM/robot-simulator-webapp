@@ -2,14 +2,9 @@ function unitsToPixels(units) {
     return units * canvasHeight / canvasSize
 }
 
-class FieldObject {
-    // list of x, y coords
-    constructor(points) {
-        this.points = points
-    }
-}
+let listFieldObjects = []
 
-class FieldRectangle {
+class FieldObject {
     constructor(length, width, x, y, color="blue") {
         let div = document.createElement("div")
         let width_XPx = unitsToPixels(width)
@@ -81,12 +76,29 @@ class FieldRectangle {
     }
 }
 
-class Robot extends FieldRectangle {
+class Robot extends FieldObject {
     constructor(length, width, x, y) {
         super(length, width, x, y, "red")
         this.div.id = "robot"
     }
+    
+    // Iterates throguh all current Field Objects to check for any collision
+    checkCollision() {
+        listFieldObjects.forEach(FO => {
+            if (this.isCollidingWith(FO.coords)) {
+                alert("YA CRASHED")
+            }
+        })
+    }
 }
 
-let thing = new FieldRectangle(10, 10, 50, 60)
-thing.draw()
+// All field objects are added
+listFieldObjects.push(
+    new FieldObject(10, 10, 50, 60),
+    new FieldObject(5, 5, 10, 10)
+)
+
+// Draw all field objects
+listFieldObjects.forEach(FO => {
+    FO.draw()
+})

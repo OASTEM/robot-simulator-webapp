@@ -4,11 +4,11 @@ main()
 
 function main() {
     data = doMath(rawData)
-    resetRobot()
+    setField()
     setButtons()
 }
 
-function resetRobot() {
+function setField() {
     robot = new Robot(robotHeight, robotWidth, robotStartX, robotStartY)
     robot.draw()
 }
@@ -36,15 +36,13 @@ function setButtons() {
         // Loop to print out location every 20ms
         let coordPrinter = setInterval(function() {
             robot.updateBounds()
-            if (robot.isCollidingWith(thing.coords)) {
-                alert("YA CRASHED")
-            }
+            robot.checkCollision()
         }, 20)
      
         // Timeout after the length of robot animation
         setTimeout(function() {
             clearInterval(coordPrinter)
-        }, data[data.length - 1].time)
+        }, data[data.length - 1].time)``
     }
     
     reset.onclick = function() {

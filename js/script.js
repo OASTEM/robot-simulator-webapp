@@ -33,10 +33,12 @@ function setButtons() {
         // add the animation to the class
         robot.div.className += " robot-animation"
         
-        // Loop to print out location every 10ms
+        // Loop to print out location every 20ms
         let coordPrinter = setInterval(function() {
-                let bounds = robot.div.getBoundingClientRect()
-                console.log(bounds)
+            robot.updateBounds()
+            if (robot.isCollidingWith(thing.coords)) {
+                alert("YA CRASHED")
+            }
         }, 20)
      
         // Timeout after the length of robot animation

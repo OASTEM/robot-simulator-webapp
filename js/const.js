@@ -8,8 +8,8 @@ const robotWidth = 0.6858 // unit (27 inches)
 const robotHeight = 0.8382 // units (33 inches)
 
 // Robot x - y is 
-const robotStartX = 0 // units
-const robotStartY = 0 // units
+const robotStartX = 50 // units
+const robotStartY = 50 // units
 
 // Cache DOM objects to js var
 const robotCanvas = document.getElementById("robot-canvas")

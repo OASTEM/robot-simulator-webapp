@@ -43,7 +43,7 @@ class FieldObject {
 }
 
 class FieldRectangle {
-    constructor(length, width, x, y, color="brown") {
+    constructor(length, width, x, y, color="blue") {
         let div = document.createElement("div")
         let width_XPx = unitsToPixels(width)
         let height_XPx = unitsToPixels(length)
@@ -59,6 +59,10 @@ class FieldRectangle {
         this.div = div
     }
     
+    updateBounds() {
+        
+    }
+    
     draw() {
         robotCanvas.appendChild(this.div)
     }
@@ -66,7 +70,7 @@ class FieldRectangle {
 
 class Robot extends FieldRectangle {
     constructor(length, width, x, y) {
-        super(length, width, x, y, "blue")
+        super(length, width, x, y, "red")
         this.div.id = "robot"
     }
 }

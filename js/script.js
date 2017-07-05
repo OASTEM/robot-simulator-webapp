@@ -1,9 +1,6 @@
-let data
+let data, robot
 
 main()
-
-const robot = new Robot(robotHeight, robotWidth, robotStartX, robotStartY)
-robot.draw()
 
 function main() {
     data = doMath(rawData)
@@ -12,7 +9,8 @@ function main() {
 }
 
 function resetRobot() {
-    
+    robot = new Robot(robotHeight, robotWidth, robotStartX, robotStartY)
+    robot.draw()
 }
 
 function setButtons() {
@@ -34,6 +32,17 @@ function setButtons() {
     start.onclick = function() {
         // add the animation to the class
         robot.div.className += " robot-animation"
+        
+        // Loop to print out location every 10ms
+        let coordPrinter = setInterval(function() {
+                let bounds = robot.div.getBoundingClientRect()
+                console.log(bounds)
+        }, 20)
+     
+        // Timeout after the length of robot animation
+        setTimeout(function() {
+            clearInterval(coordPrinter)
+        }, data[data.length - 1].time)
     }
     
     reset.onclick = function() {
@@ -42,6 +51,7 @@ function setButtons() {
     }
 }
 
+// Converts from ms to seconds
 function calcAnimationLength() {
     return data[data.length - 1].time / 1000 + "s"
 }

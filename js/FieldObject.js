@@ -86,7 +86,7 @@ class Robot extends FieldObject {
     checkCollision() {
         listFieldObjects.forEach(FO => {
             if (this.isCollidingWith(FO.coords)) {
-                alert("YA CRASHED")
+                this.div.style.animationPlayState = "paused"
             }
         })
     }

@@ -42,12 +42,13 @@ function setButtons() {
         // Timeout after the length of robot animation
         setTimeout(function() {
             clearInterval(coordPrinter)
-        }, data[data.length - 1].time)``
+        }, data[data.length - 1].time)
     }
     
     reset.onclick = function() {
         // remove animation class by setting it to the default
         robot.div.className = "field-object"
+        robot.div.style.animationPlayState = ""
     }
 }
 
